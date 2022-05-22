@@ -16,7 +16,7 @@ import About from './components/About/About';
 import Inventory from './components/Inventory/Inventory';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Payment from './components/Payment/Payment';
+import Order from './components/Order/Order';
 
 
 
@@ -31,7 +31,7 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/home" element={<Homepage />} />
         <Route path="/inventory" element={<Inventory />} />
-        <Route path="purchase/:id" element={<Payment />} />
+        <Route path="/order/:id" element={<Order />} />
         <Route path="dashboard" element={<Dashboard />}>
           <Route index element={<MyProfile />} />
           <Route path="addareview" element={<AddAReview />} />

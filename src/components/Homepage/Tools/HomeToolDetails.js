@@ -7,6 +7,14 @@ const HomeToolDetails = ({ tool }) => {
 
     const Navigate = useNavigate();
 
+    const orderButton = id => {
+
+        Navigate(`/order/${id}`)
+
+    }
+
+
+
     return (
         <div className=" card w-full shadow-xs ">
             <figure className="px-10 pt-10">
@@ -19,7 +27,7 @@ const HomeToolDetails = ({ tool }) => {
                 <h3 className="card-title">Minimum Quantity: {least}</h3>
                 <h3 className="card-title">Price: {price}</h3>
                 <div className="card-actions">
-                    <button className="btn btn-warning btn-wide flex mx-auto">Order</button>
+                    <button onClick={() => orderButton(_id)} className="btn btn-warning btn-wide flex mx-auto">Order</button>
                 </div>
             </div>
 
