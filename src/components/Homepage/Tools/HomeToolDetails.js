@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const HomeToolDetails = ({ tool }) => {
 
     const { _id, image, name, price, least, quantity, description } = tool;
+
+    const Navigate = useNavigate();
 
     return (
         <div className=" card w-full shadow-xs ">
