@@ -78,8 +78,8 @@ const Order = () => {
                             <h2 class="text-sm title-font text-gray-500 tracking-widest">{user?.email}</h2>
                             <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{tools.name}</h1>
                             <div class="flex mb-4">
-                                <span class="flex items-center">
-                                    <span class="text-gray-600 ml-3">Price (per-unit):{tools.price}</span>
+                                <span class="flex items-center">Minimum Quantity:
+                                    <span class="text-gray-600 ml-3">{tools.least}</span>
                                 </span>
 
                             </div>
@@ -90,9 +90,9 @@ const Order = () => {
                                     {tools.quantity}
                                 </div>
                                 <div class="flex ml-6 items-center">
-                                    <span class="mr-3">Minimum Quantity: </span>
+                                    <span class="mr-3">Price: </span>
                                     <div class="relative">
-                                        {tools.least}
+                                        {tools.price}
                                     </div>
                                 </div>
                             </div>
@@ -139,8 +139,7 @@ const Order = () => {
 
                                     <div className="p-2 w-full">
                                         <button type="submit"
-                                            className="flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">Add
-                                            Quantity</button>
+                                            className="flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">Purchase</button>
                                     </div>
                                 </div>
                             </form>
