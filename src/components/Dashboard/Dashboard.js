@@ -14,6 +14,7 @@ const Dashboard = () => {
                 <Container>
                     <Nav className="mx-auto ">
                         <Nav.Link as={Link} to="/dashboard/myprofile">My Profile</Nav.Link>
+
                         {
                             user ? <Nav.Link as={Link} to='/dashboard/addareview'>Add A Review</Nav.Link> : ''
                         }
