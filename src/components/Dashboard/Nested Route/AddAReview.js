@@ -45,8 +45,9 @@ const AddAReview = () => {
                     <input className='mb-3' value={user?.email} {...register("email", { required: true })} readOnly />
                     <br />
                     <textarea className='mb-3' placeholder='Review' {...register("Review")} />
+
                     <input className='mb-3' placeholder='Ratings' type="number"
-                        min="0" max="5" {...register(" Ratings")} />
+                        min="0" max="5" {...register("Ratings")} />
                     <br />
 
                     <div className="flex justify-center">
