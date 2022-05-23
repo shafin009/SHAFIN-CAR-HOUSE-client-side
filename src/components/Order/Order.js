@@ -26,9 +26,9 @@ const Order = () => {
         event.preventDefault();
         const userEmail = user.email;
         const images = tools.image;
-        const price = tools.price;
-        const orderQuantity = parseInt(event.target.order.value);
-        const totalPrice = price * orderQuantity;
+        const prices = tools.price;
+        const orderQuantity = parseInt(event.target.orders.value);
+        const totalPrice = prices * orderQuantity;
         const shopName = event.target.shop.value;
         const address = event.target.address.value;
         const phone = event.target.phone.value;
@@ -36,20 +36,20 @@ const Order = () => {
         const leastQuantity = tools.least;
 
         if (availableQuantity < orderQuantity) {
-            return toast.error("Sorry!! You can not order more then stock");
+            return toast.error("Sorry!! You can't order more than stock");
         }
-        if (orderQuantity < leastQuantity) {
-            return toast.error("Sorry!! minimum order 50");
+        else if (leastQuantity > orderQuantity) {
+            return toast.error("Sorry!! Minimum order 50");
         }
         const placeOrder = {
             pid: id,
             email: userEmail,
-            shopName,
             price: totalPrice,
             img: images,
             address,
             phone,
             orderQuantity,
+            shopName,
         };
         fetch("http://localhost:5000/order", {
             method: "POST",
@@ -75,7 +75,8 @@ const Order = () => {
                     <div class="lg:w-4/5 mx-auto flex flex-wrap">
                         <img alt="" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={tools.image} />
                         <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                            <h2 class="text-sm title-font text-gray-500 tracking-widest">{user?.email}</h2>
+                            <h2 class="text-sm title-font text-gray-500 tracking-widest">Your Name :{user?.displayName}</h2>
+                            <h2 class="text-sm title-font text-gray-500 tracking-widest">Email :{user?.email}</h2>
                             <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{tools.name}</h1>
                             <div class="flex mb-4">
                                 <span class="flex items-center">Minimum Quantity:
@@ -129,7 +130,7 @@ const Order = () => {
                                             <label htmlFor="">Order Quantity</label>
                                             <input
                                                 type="number"
-                                                name="order"
+                                                name="orders"
                                                 min="0"
                                                 placeholder="50"
                                                 className="border-2 text-center mx-3 h-8 p-2 rounded w-48"
