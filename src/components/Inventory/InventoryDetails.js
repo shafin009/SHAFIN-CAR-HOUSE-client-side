@@ -9,7 +9,7 @@ const InventoryDetails = ({ tool }) => {
 
     const orderButton = id => {
 
-        Navigate(`/order/${id}`)
+        Navigate(`/tools/${id}`)
 
     }
 

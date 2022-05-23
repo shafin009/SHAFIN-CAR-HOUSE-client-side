@@ -258,6 +258,29 @@ const About = () => {
                             </div>
                         </div>
                     </div>
+                    <div class="resume_item resmue_interests">
+                        <div class="resume_title">LANGUAGE SKILLS</div>
+                        <div class="resume_info">
+                            <div class="interests">
+                                <div class="int_icon">
+                                    <i class="fas fa-volleyball-ball"></i>
+                                </div>
+                                <div class="int_data">Bengali</div>
+                            </div>
+                            <div class="interests">
+                                <div class="int_icon">
+                                    <i class="fas fa-book-open"></i>
+                                </div>
+                                <div class="int_data">English</div>
+                            </div>
+                            <div class="interests">
+                                <div class="int_icon">
+                                    <i class="fas fa-film"></i>
+                                </div>
+                                <div class="int_data">Hindi</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

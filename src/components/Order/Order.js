@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate, useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
@@ -9,11 +9,17 @@ const Order = () => {
 
     const [user] = useAuthState(auth);
     const { id } = useParams();
-    const [tools] = UseToolsDetails()
+
     const navigate = useNavigate();
 
 
+    const [tools, setTools] = useState([]);
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/tools/${id}`)
+            .then(res => res.json())
+            .then(data => setTools(data))
+    }, [id])
 
 
 
@@ -24,10 +30,10 @@ const Order = () => {
             <section class="text-gray-600 body-font overflow-hidden">
                 <div class="container px-5 py-24 mx-auto">
                     <div class="lg:w-4/5 mx-auto flex flex-wrap">
-                        <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={tools.image} />
+                        <img alt="" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={tools.image} />
                         <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                            <h2 class="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
-                            <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">The Catcher in the Rye</h1>
+                            <h2 class="text-sm title-font text-gray-500 tracking-widest">{user?.email}</h2>
+                            <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{tools.name}</h1>
                             <div class="flex mb-4">
                                 <span class="flex items-center">
                                     <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
