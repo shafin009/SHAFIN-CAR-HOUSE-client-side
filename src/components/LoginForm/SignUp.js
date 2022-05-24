@@ -6,17 +6,18 @@ import auth from '../../firebase.init';
 import Loading from '../../Hooks/Loading';
 
 
+
 const SignUp = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
     const nameRef = useRef('');
+    const Navigate = useNavigate();
 
     const [
         createUserWithEmailAndPassword, loading,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [updateProfile, updating] = useUpdateProfile(auth);
 
-    const Navigate = useNavigate();
 
 
 

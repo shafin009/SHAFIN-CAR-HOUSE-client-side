@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import auth from '../../../firebase.init';
 
 
@@ -9,7 +9,7 @@ const AddAReview = () => {
 
     const [user] = useAuthState(auth);
 
-    const { register, handleSubmit, watch } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const onSubmit = (data) => {
         console.log(data);
@@ -29,7 +29,7 @@ const AddAReview = () => {
                 console.log(result);
             });
     };
-
+    console.log(user);
     return (
         <>
             <br />

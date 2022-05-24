@@ -1,11 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import SocialLogin from './SocialLogin';
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../../Hooks/Loading';
+import './SocialLogin.css'
 
 
 
@@ -26,15 +24,21 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
-    if (loading || sending) {
+    const [signInWithGoogle, userg, loadingg, errorg] = useSignInWithGoogle(auth);
+
+    useEffect(() => {
+        if (user || userg) {
+            navigate(from, { replace: true });
+        }
+    }, [user, userg, from, navigate])
+
+    if (loading || loadingg) {
         return <Loading></Loading>
     }
 
 
-
-    if (error) {
+    if (error || errorg) {
         errorMessageShow = <p className='text-danger text-center'>Error: {error?.message}</p>
     }
 
@@ -43,22 +47,12 @@ const Login = () => {
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         await signInWithEmailAndPassword(email, password);
-        navigate(from, { replace: true });
 
 
 
     }
 
-    const passwordReset = async () => {
-        const email = emailRef.current.value;
-        if (email) {
-            await sendPasswordResetEmail(email);
-            toast('Password Reset! Cheak Mail!')
-        }
-        else {
-            toast('Enter your E-Mail!');
-        }
-    }
+
 
     return (
         <div className='h-full'>
@@ -117,12 +111,6 @@ const Login = () => {
                                             className="text-green-600 "
                                         > Register</Link>
                                     </p>
-                                    <button
-                                        onClick={passwordReset}
-                                        className="inline-block px-7 py-3 bg-red-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
-                                    >
-                                        Forgot Password
-                                    </button>
 
                                     <div className="flex justify-center items-center mb-6">
                                         <p className="font-semibold">{errorMessageShow}</p>
@@ -134,7 +122,14 @@ const Login = () => {
                         <div
                             className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0"
                         >
-                            <SocialLogin></SocialLogin>
+                            <div>
+                                <div class="login-box">
+                                    <h1>Social Login</h1>
+                                    <button class="social-button" onClick={() => signInWithGoogle()} id="google-connect"> <span>Connect with Google</span></button>
+
+                                </div>
+
+                            </div >
                         </div>
                     </div>
                 </div>
