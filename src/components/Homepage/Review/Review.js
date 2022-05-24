@@ -24,7 +24,7 @@ const Review = () => {
             <section className="text-gray-700 body-font">
                 <div className='grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center '>
                     {
-                        reviews.map((review) => <div key={review._id} className="h-full border-2 border-gray-800 rounded-lg overflow-hidden">
+                        reviews.map(review => <div key={review._id} className="h-full border-2 border-gray-800 rounded-lg overflow-hidden">
                             <div className="p-6">
                                 <h2 className="tracking-widest text-xs title-font font-medium text-gray-600 mb-1">Name: {review.displayName}</h2>
                                 <h1 className="title-font text-lg font-medium text-gray-600 mb-3">Ratings: {review.Ratings}</h1>

@@ -27,6 +27,7 @@ const Order = () => {
         const userEmail = user.email;
         const images = tools.image;
         const prices = tools.price;
+        const itemName = tools.name;
         const orderQuantity = parseInt(event.target.orders.value);
         const totalPrice = prices * orderQuantity;
         console.log(totalPrice)
@@ -47,6 +48,7 @@ const Order = () => {
             email: userEmail,
             price: totalPrice,
             img: images,
+            name: itemName,
             address,
             phone,
             orderQuantity,

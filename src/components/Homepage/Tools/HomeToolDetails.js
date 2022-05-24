@@ -25,7 +25,7 @@ const HomeToolDetails = ({ tool }) => {
                 <p>Description: {description}</p>
                 <h3 className="card-title">Quantity: {quantity}</h3>
                 <h3 className="card-title">Minimum Quantity: {least}</h3>
-                <h3 className="card-title">Price: {price}</h3>
+                <h3 className="card-title">Price: ${price}</h3>
                 <div className="card-actions">
                     <button onClick={() => orderButton(_id)} className="btn btn-warning btn-wide flex mx-auto">Order</button>
                 </div>

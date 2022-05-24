@@ -42,6 +42,16 @@ const Header = () => {
                                     :
                                     <Nav.Link as={Link} to="login">Login</Nav.Link>
                             }
+                            {
+                                user ? <p className='btn btn-link text-white text-decoration-none'>{user.displayName}</p> : ''
+                            }
+                            {
+                                user ? <div class="avatar">
+                                    <div class="w-16 mask mask-hexagon">
+                                        <img src={user.photoURL} alt="" />
+                                    </div>
+                                </div> : ''
+                            }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

@@ -24,7 +24,7 @@ const InventoryDetails = ({ tool }) => {
                     <p>Description: {description}</p>
                     <h3 className="card-title">Quantity: {quantity}</h3>
                     <h3 className="card-title">Minimum Quantity: {least}</h3>
-                    <h3 className="card-title">Price: {price}</h3>
+                    <h3 className="card-title">Price: ${price}</h3>
                     <div className="card-actions justify-center">
                         <button onClick={() => orderButton(_id)} className="btn btn-secondary btn-wide flex mx-auto">Order</button>
                     </div>

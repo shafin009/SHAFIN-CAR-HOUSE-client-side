@@ -51,7 +51,11 @@ const Blogs = () => {
                 </div>
                 <div class="card-body">
                     <p class="card-text">
+                        One should never update the state directly because of the following reasons:
 
+                        <li>1.আপনি যদি এটি সরাসরি update করেন, তাহলে setState() কে পরে Call করলে আপনার করা update-টি replace হয়ে যেতে পারে।</li>
+                        <li>2.আপনি যখন সরাসরি state update করেন, তখন এটি এই state-কে immediately change করে না। পরিবর্তে, এটি একটি মুলতুবি অবস্থার রূপান্তর তৈরি করে এবং এই পদ্ধতিতে call করার পরে এটি access করা শুধুমাত্র present value return দেবে.</li>
+                        <li>3.আপনি সমস্ত components জুড়ে state control হারাবেন.</li>
 
                     </p>
                 </div>
@@ -62,11 +66,10 @@ const Blogs = () => {
                 </div>
                 <div class="card-body">
                     <p class="card-text">
-                        One should never update the state directly because of the following reasons:
 
-                        <li>1.আপনি যদি এটি সরাসরি update করেন, তাহলে setState() কে পরে Call করলে আপনার করা update-টি replace হয়ে যেতে পারে।</li>
-                        <li>2.আপনি যখন সরাসরি state update করেন, তখন এটি এই state-কে immediately change করে না। পরিবর্তে, এটি একটি মুলতুবি অবস্থার রূপান্তর তৈরি করে এবং এই পদ্ধতিতে call করার পরে এটি access করা শুধুমাত্র present value return দেবে.</li>
-                        <li>3.আপনি সমস্ত components জুড়ে state control হারাবেন.</li>
+
+
+
                     </p>
                 </div>
             </div>
