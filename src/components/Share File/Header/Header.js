@@ -15,6 +15,7 @@ const Header = () => {
     const handleSignOut = () => {
         signOut(auth);
         Navigate('/login')
+        localStorage.removeItem('accessToken');
     }
 
 

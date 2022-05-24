@@ -5,6 +5,7 @@ import auth from '../../firebase.init';
 import Loading from '../../Hooks/Loading';
 import './SocialLogin.css'
 import { useForm } from 'react-hook-form';
+import UseToken from '../../Hooks/UseToken';
 
 
 
@@ -19,19 +20,22 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+
+    const [token] = UseToken(user || userGoogle)
     let errorMessageSeen;
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
 
-    
+
 
     useEffect(() => {
-        if (user || userGoogle) {
+
+        if (token) {
             navigate(from, { replace: true });
         }
-    }, [user, userGoogle, from, navigate])
+    }, [token, from, navigate])
 
     if (loading || loadingGoogle) {
         return <Loading></Loading>

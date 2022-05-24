@@ -30,7 +30,6 @@ const Order = () => {
         const itemName = tools.name;
         const orderQuantity = parseInt(event.target.orders.value);
         const totalPrice = prices * orderQuantity;
-        console.log(totalPrice)
         const shopName = event.target.shop.value;
         const address = event.target.address.value;
         const phone = event.target.phone.value;

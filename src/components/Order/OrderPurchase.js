@@ -8,7 +8,7 @@ const OrderPurchase = () => {
     console.log(id);
     useEffect(() => {
         fetch(`http://localhost:5000/order/${id}`)
-        
+
             .then(res => res.json())
             .then(data => setOrder(data));
 
@@ -22,6 +22,7 @@ const OrderPurchase = () => {
                 <div class="card-body items-center text-center">
                     <h2 class="card-title">Pay for-<span class='text-violet-500'>{order.name}</span></h2>
                     <p class='text-2xl items-center text-center'>Please Pay-<span class='text-violet-500'> ${order.price}</span></p>
+                    <p class='text-2xl items-center text-center'>Please Pay-<span class='text-violet-500'> ${order.orderQuantity}</span></p>
 
                 </div>
             </div>
