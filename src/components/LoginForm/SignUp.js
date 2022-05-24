@@ -4,6 +4,7 @@ import './SocialLogin.css';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../../Hooks/Loading';
+import UseToken from '../../Hooks/UseToken';
 import { useForm } from 'react-hook-form';
 
 
@@ -20,6 +21,8 @@ const SignUp = () => {
 
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
+    const [token] = UseToken(user || userGoogle)
+
     const navigate = useNavigate();
 
     let errorMessageSeen;
@@ -32,8 +35,8 @@ const SignUp = () => {
         errorMessageSeen = <p className='text-red-500'><small>{error?.message || errorGoogle?.message || updateError?.message}</small></p>
     }
 
-    if (user || userGoogle) {
-        // navigate('/dashboard');
+    if (token) {
+        navigate('/dashboard');
     }
 
     const onSubmit = async data => {

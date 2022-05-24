@@ -8,6 +8,7 @@ const OrderPurchase = () => {
     console.log(id);
     useEffect(() => {
         fetch(`http://localhost:5000/order/${id}`)
+        
             .then(res => res.json())
             .then(data => setOrder(data));
 

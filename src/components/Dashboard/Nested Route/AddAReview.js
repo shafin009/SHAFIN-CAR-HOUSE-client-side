@@ -20,6 +20,7 @@ const AddAReview = () => {
         fetch("http://localhost:5000/review", {
             method: "POST",
             headers: {
+                
                 "content-type": "application/json",
             },
             body: JSON.stringify(data),
