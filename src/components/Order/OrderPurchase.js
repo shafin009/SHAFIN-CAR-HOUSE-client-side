@@ -17,7 +17,7 @@ const OrderPurchase = () => {
         <div>
             <div class="card w-full shadow-xl">
                 <figure class="px-10 pt-10">
-                    <img src={order.img} alt="Shoes" class="rounded-xl w-80" />
+                    <img src={order.img} alt="" class="rounded-xl w-80" />
                 </figure>
                 <div class="card-body items-center text-center">
                     <h2 class="card-title">Pay for-<span class='text-violet-500'>{order.name}</span></h2>

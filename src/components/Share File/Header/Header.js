@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -9,12 +9,11 @@ import auth from '../../../firebase.init';
 
 const Header = () => {
     const [user] = useAuthState(auth);
-    const Navigate = useNavigate()
+
 
 
     const handleSignOut = () => {
         signOut(auth);
-        Navigate('/login')
         localStorage.removeItem('accessToken');
     }
 
