@@ -7,12 +7,15 @@ import UserDetails from './UserDetails';
 const AllUsers = () => {
 
     const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/users', {
+
+
         method: 'GET',
         headers: {
-            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            'content-type': 'application/json',
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
     }).then(res => res.json()));
-
+    console.log(users)
 
     if (isLoading) {
         return <Loading></Loading>
@@ -34,6 +37,8 @@ const AllUsers = () => {
 
                     ></UserDetails>)
                 }
+
+
             </div>
 
         </div>
