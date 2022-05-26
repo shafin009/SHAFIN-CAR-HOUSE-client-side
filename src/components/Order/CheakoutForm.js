@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-const CheakoutForm = ({ o }) => {
+
+const CheakoutForm = ({ orders }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [errorCard, setErrorCard] = useState('')
@@ -11,7 +12,9 @@ const CheakoutForm = ({ o }) => {
     const [clientSecret, setClientSecret] = useState('')
 
 
-    const { price, shopName, email, pid } = o;
+    const { price, shopName, email, pid } = orders;
+
+
 
     useEffect(() => {
 
@@ -97,7 +100,7 @@ const CheakoutForm = ({ o }) => {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
 
                 },
-                body: JSON.stringify( myItem),
+                body: JSON.stringify(myItem),
 
             })
                 .then(res => res.json())

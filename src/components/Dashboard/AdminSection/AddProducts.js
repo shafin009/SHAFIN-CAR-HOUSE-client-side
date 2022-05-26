@@ -66,17 +66,17 @@ const AddItem = () => {
                                 </div>
                                 <div class="p-2 w-1/2">
                                     <div class="relative">
-                                        <label for="email" class="leading-7 text-sm text-gray-600">Available Quantity</label>
+                                        <label for="email" class="leading-7 text-sm text-gray-600">Minimum Quantity</label>
                                         <input type="number"
-                                            placeholder="Available Quantity"
-                                            {...register("availableQuantity", { required: true })} class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                            placeholder="Minimum Quantity"
+                                            {...register("least", { required: true })} class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                                     </div>
                                 </div>
                                 <div class="p-2 w-full">
                                     <div class="relative">
                                         <label for="message" class="leading-7 text-sm text-gray-600">Description</label>
                                         <textarea type="text"
-                                            placeholder="Product Description"
+                                            placeholder="Description"
                                             {...register("description")} class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@ const AddItem = () => {
                                         <label for="email" class="leading-7 text-sm text-gray-600">Upload Image</label>
                                         <input type="text"
                                             placeholder="Img URL"
-                                            {...register("img")} class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                            {...register("image")} class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                                     </div>
                                 </div>
 

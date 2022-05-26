@@ -9,8 +9,11 @@ const Order = () => {
 
 
     const [user] = useAuthState(auth);
-    const { id } = useParams();
+    const x = window.location.pathname.split('/')
+    const id = x[x.length - 1]
 
+
+    console.log(id)
     const navigate = useNavigate();
 
 
@@ -20,7 +23,7 @@ const Order = () => {
         fetch(`http://localhost:5000/tools/${id}`)
             .then(res => res.json())
             .then(data => setTools(data))
-    }, [])
+    }, [id])
 
     const handlePurchases = (event) => {
         event.preventDefault();

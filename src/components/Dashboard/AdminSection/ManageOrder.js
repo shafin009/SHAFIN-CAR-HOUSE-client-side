@@ -1,16 +1,15 @@
-import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import auth from "../../../firebase.init";
 
-const MyOrder = () => {
+
+const ManageOrder = () => {
     const [items, setItems] = useState([])
 
     const [user] = useAuthState(auth);
-    const navigate = useNavigate();
+
 
     useEffect(() => {
 
@@ -22,27 +21,15 @@ const MyOrder = () => {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 }
             })
-                .then(res => {
-
-                    if (res.status === 401 || res.status === 403) {
-                        signOut(auth);
-                        localStorage.removeItem('accessToken');
-                        navigate('/login')
-                    }
-
-                    return res.json()
-
-
-
-                })
+                .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+
                     setItems(data)
                 })
         }
 
 
-    }, [user?.email])
+    }, [user])
 
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
@@ -52,7 +39,7 @@ const MyOrder = () => {
         buttonsStyling: false,
     });
 
-    const orderDelete = (id) => {
+    const deleteOrders = (id) => {
         swalWithBootstrapButtons
             .fire({
                 title: "Are you sure?",
@@ -118,7 +105,7 @@ const MyOrder = () => {
                             }
                         });
                 } else if (
-
+                    /* Read more about handling dismissals below */
                     data.dismiss === Swal.DismissReason.cancel
                 ) {
                     swalWithBootstrapButtons.fire(
@@ -131,7 +118,7 @@ const MyOrder = () => {
     };
     return (
         <div className="overflow-x-auto">
-            <h2 className="text-2xl text-center py-2">My Orders</h2>
+            <h2 className="text-2xl text-center py-2">Manage Products</h2>
             <table className="table w-full">
                 <thead>
                     <tr>
@@ -173,7 +160,7 @@ const MyOrder = () => {
                             </td>
                             <td>
                                 <button
-                                    onClick={() => orderDelete(item._id)}
+                                    onClick={() => deleteOrders(item._id)}
                                     className="btn btn-sm bg-red-500"
                                 >
                                     Delete
@@ -181,11 +168,10 @@ const MyOrder = () => {
                             </td>
                         </tr>
                     ))}
-
                 </tbody>
-            </table >
-        </div >
+            </table>
+        </div>
     );
 };
 
-export default MyOrder;
+export default ManageOrder;

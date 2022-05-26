@@ -13,7 +13,6 @@ import AddAReview from './components/Dashboard/Nested Route/AddAReview';
 import MyOrder from './components/Dashboard/Nested Route/MyOrder';
 import MyProfile from './components/Dashboard/Nested Route/MyProfile';
 import About from './components/About/About';
-import Inventory from './components/Inventory/Inventory';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Order from './components/Order/Order';
@@ -22,6 +21,7 @@ import AllUsers from './components/Dashboard/AdminSection/AllUsers';
 import RequireAdmin from './components/Dashboard/AdminSection/RequireAdmin';
 import AddItem from './components/Dashboard/AdminSection/AddProducts';
 import ManageItem from './components/Dashboard/AdminSection/ManageItem';
+import ManageOrder from './components/Dashboard/AdminSection/ManageOrder';
 
 
 
@@ -36,7 +36,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/home" element={<Homepage />} />
-        <Route path="/inventory" element={<Inventory />} />
         <Route path="/tools/:id" element={
           <RequireAuth>
             <Order />

@@ -1,44 +1,70 @@
-import React from 'react';
-import UseTools from '../../Hooks/UseTools';
-import InventoryDetails from './InventoryDetails';
+import React, { useEffect, useState } from 'react';
 
+const ManageItem = () => {
 
+    const [manageItems, setManageItems] = useState([]);
+    useEffect(() => {
+        fetch("http://localhost:5000/tools", {
+            headers: {
+                method: "GET",
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => setManageItems(data));
+    }, []);
 
-const Inventory = () => {
+    const deleteButton = id => {
+        const proceed = window.confirm('Are you Sure ?');
 
-    const [tools, setTools] = UseTools();
+        if (proceed) {
+
+            fetch(`http://localhost:5000/tools/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+
+                    const afterDelete = manageItems.filter(manageItem => manageItem._id !== id)
+                    setManageItems(afterDelete)
+
+                })
+            console.log(manageItems)
+        }
+
+    }
 
     return (
         <div>
-            <br />
-            <h1 className='text-center text-3xl font-serif underline text-stone-900'>My All Tools</h1>
+            <section className="text-gray-600 body-font">
+                <div className="container px-5 py-24 mx-auto">
+                    <div className="flex flex-wrap -m-4">
+                        {manageItems.map(manageItem => <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
+                            <div className="block relative h-48 rounded overflow-hidden">
+                                <img alt="" className="object-cover object-center w-full h-full block" src={manageItem.image} />
+                            </div>
+                            <div className="mt-4">
+                                <h4 className="text-gray-700 text-xs tracking-widest title-font mb-1">Minimum Quantity:{manageItem.least}</h4>
+                                <h2 className="text-gray-900 title-font text-lg font-medium">Name:{manageItem.name}</h2>
+                                <p className="text-gray-500 text-xs tracking-widest title-font mb-1">{manageItem.description}</p>
+                                <h4 className="mt-1">Price: {manageItem.price}</h4>
+                                <h4 className="mt-1">Quantity: {manageItem.quantity}</h4>
 
-            <br />
-            <section className="text-gray-700 bg-white body-font">
+                                <button onClick={() => deleteButton(manageItem._id)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
 
-                <div class="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center overflow-hidden">
-
-
-
-                    {
-                        tools.map(tool => <InventoryDetails
-                            key={tools._id}
-                            tool={tool}
-                        ></InventoryDetails>)
-                    }
+                        )}
 
 
+
+                    </div>
                 </div>
-
-
-            </section >
-
-
-
-
-
-        </div >
+            </section>
+        </div>
     );
 };
 
-export default Inventory;
+export default ManageItem;

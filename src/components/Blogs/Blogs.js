@@ -1,4 +1,5 @@
 import React from 'react';
+import code from './java.JPG'
 
 const Blogs = () => {
     return (
@@ -66,10 +67,10 @@ const Blogs = () => {
                 </div>
                 <div class="card-body">
                     <p class="card-text">
-
-
-
-
+                        The input field value will search a product by find method.
+                        <figure className="px-10 pt-10">
+                            <img src={code} alt="" className="rounded-xl" />
+                        </figure>
                     </p>
                 </div>
             </div>
