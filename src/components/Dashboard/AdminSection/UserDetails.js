@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
 
 const UserDetails = ({ user, refetch }) => {
-    const { email, role } = user;
+    const { email, role, _id } = user;
 
     const adminMake = () => {
         fetch(`http://localhost:5000/users/admin/${email}`, {
@@ -28,7 +28,28 @@ const UserDetails = ({ user, refetch }) => {
                 }
             })
     }
+    const deleteButton = id => {
+        const proceed = window.confirm('Are you Sure ?');
 
+        if (proceed) {
+            fetch(`http://localhost:5000/users/${id}`, {
+                method: 'delete',
+                headers: {
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                }
+
+            })
+                .then(res => res.json())
+                .then(data => {
+
+                    refetch(data);
+                    toast.success('Successfully Deleted User !')
+
+                })
+
+        }
+
+    }
     return (
         <div className='shadow-lg rounded-2xl w-[250px] bg-white p-4'>
 
@@ -45,7 +66,7 @@ const UserDetails = ({ user, refetch }) => {
                 </div>}
                 <br />
                 <div className='flex-shrink-0'>
-                    <button className='btn btn-error'>Remove User</button>
+                    <button onClick={() => deleteButton(_id)} className='btn btn-error'>Remove User</button>
                 </div>
             </div>
 
