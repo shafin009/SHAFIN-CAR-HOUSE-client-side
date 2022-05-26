@@ -104,7 +104,7 @@ const Order = () => {
                                     <div className="p-2 w-1/2">
                                         <div className="relative">
                                             <div>
-                                                <label htmlFor="">Shop Name</label>
+                                                <label htmlFor="">Your Name</label>
                                                 <input
                                                     type="text"
                                                     name="shop"

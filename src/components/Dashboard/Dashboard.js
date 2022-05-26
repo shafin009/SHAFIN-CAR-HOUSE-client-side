@@ -8,6 +8,7 @@ import useAdmin from '../../Hooks/useAdmin';
 const Dashboard = () => {
 
     const [user] = useAuthState(auth);
+
     const [admin] = useAdmin(user)
 
 
@@ -27,7 +28,8 @@ const Dashboard = () => {
                             user ? <Nav.Link as={Link} to='/dashboard/myorder'>My Order</Nav.Link> : ''
                         }
 
-                        {admin && <Nav.Link as={Link} to='/dashboard/allusers'>All Users</Nav.Link>}
+                        {admin && user && <Nav.Link as={Link} to='/dashboard/allusers'>All Users</Nav.Link>}
+
                     </Nav>
                 </Container>
             </Navbar>
