@@ -34,6 +34,7 @@ const MyOrder = () => {
 
                 })
                 .then(data => {
+                    // console.log(data);
                     setItems(data)
                 })
         }
@@ -65,13 +66,8 @@ const MyOrder = () => {
                                 <td>{item.name}</td>
                                 <td>{item.orderQuantity}</td>
                                 <td>{item.price}</td>
-                                <td>{item.price}</td>
-                                <td>{(item.price && !item.paid) && <Link to={`/purchase/${item.pid
-                                    }`}>
-                                    <button class="btn btn-xs sm:btn-sm md:btn lg:btn">Pay</button>
-                                </Link>}
-
-                                    {(item.price && item.paid) && <span class="btn btn-xs sm:btn-sm md:btn lg:btn">Paid</span>}
+                                <td>{item?.transId}</td>
+                                <td>{item.paid ? "Paid" : <Link to={`/purchase/${item.pid}`} >Unpaid</Link>}
                                 </td>
 
                             </tr>)

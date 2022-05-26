@@ -81,8 +81,8 @@ const Order = () => {
                             <h2 class="text-sm title-font text-gray-500 tracking-widest">Email :{user?.email}</h2>
                             <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{tools.name}</h1>
                             <div class="flex mb-4">
-                                <span class="flex items-center">Minimum Quantity:
-                                    <span class="text-gray-600 ml-3">{tools.least}</span>
+                                <span class="flex items-center text-2xl">Minimum Quantity:
+                                    <span class="text-gray-600 ml-3 ">{tools.least}</span>
                                 </span>
 
                             </div>

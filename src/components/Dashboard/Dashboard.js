@@ -21,14 +21,16 @@ const Dashboard = () => {
                         <Nav.Link as={Link} to="/dashboard/myprofile">My Profile</Nav.Link>
 
                         {
-                            user ? <Nav.Link as={Link} to='/dashboard/addareview'>Add A Review</Nav.Link> : ''
+                            admin ? '' : <Nav.Link as={Link} to='/dashboard/addareview'>Add A Review</Nav.Link>
                         }
 
                         {
-                            user ? <Nav.Link as={Link} to='/dashboard/myorder'>My Order</Nav.Link> : ''
+                            admin ? '' : <Nav.Link as={Link} to='/dashboard/myorder'>My Order</Nav.Link>
                         }
 
-                        {admin && user && <Nav.Link as={Link} to='/dashboard/allusers'>All Users</Nav.Link>}
+                        {admin && <Nav.Link as={Link} to='/dashboard/additem'>Add Item</Nav.Link>}
+                        {admin && <Nav.Link as={Link} to='/dashboard/manageitem'>Manage Item</Nav.Link>}
+                        {admin && <Nav.Link as={Link} to='/dashboard/allusers'>All Users</Nav.Link>}
 
                     </Nav>
                 </Container>

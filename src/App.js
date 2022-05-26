@@ -20,6 +20,9 @@ import Order from './components/Order/Order';
 import OrderPurchase from './components/Order/OrderPurchase';
 import AllUsers from './components/Dashboard/AdminSection/AllUsers';
 import RequireAdmin from './components/Dashboard/AdminSection/RequireAdmin';
+import AddItem from './components/Dashboard/AdminSection/AddProducts';
+import ManageItem from './components/Dashboard/AdminSection/ManageItem';
+
 
 
 
@@ -40,11 +43,23 @@ function App() {
           </RequireAuth>
         } />
         <Route path="/purchase/:id" element={<OrderPurchase />} />
-        <Route path="dashboard" element={<Dashboard />}>
+        <Route path="dashboard" element={
+          <RequireAuth>
+            <Dashboard />
+          </RequireAuth>
+        }>
           <Route index element={<MyProfile />} />
           <Route path="addareview" element={<AddAReview />} />
           <Route path="myorder" element={<MyOrder />} />
           <Route path="myprofile" element={<MyProfile />} />
+          <Route path="additem" element={
+            <RequireAdmin>
+              <AddItem />
+            </RequireAdmin>} />
+          <Route path="manageitem" element={
+            <RequireAdmin>
+              <ManageItem />
+            </RequireAdmin>} />
           <Route path="allusers" element={
             <RequireAdmin>
               <AllUsers />

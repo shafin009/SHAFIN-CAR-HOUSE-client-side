@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-const CheakoutForm = ({ order }) => {
+const CheakoutForm = ({ o }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [errorCard, setErrorCard] = useState('')
+    const [successCard, setSuccessCard] = useState('')
+    const [transId, setTransId] = useState('')
+    const [Loading, setLoading] = useState(false)
     const [clientSecret, setClientSecret] = useState('')
 
-    const { price, shopName, email } = order;
+
+    const { price, shopName, email, pid } = o;
 
     useEffect(() => {
 
@@ -16,6 +20,9 @@ const CheakoutForm = ({ order }) => {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
+
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+
                 },
                 body: JSON.stringify({ price }),
             })
@@ -48,6 +55,8 @@ const CheakoutForm = ({ order }) => {
         })
 
         setErrorCard(error?.message || '')
+        setSuccessCard('')
+        setLoading(true)
 
         const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
 
@@ -62,7 +71,42 @@ const CheakoutForm = ({ order }) => {
                 },
             },
         );
+        if (intentError) {
+            setErrorCard(intentError?.message)
+            setLoading(false)
 
+        }
+        else {
+            setErrorCard('')
+            setTransId(paymentIntent.id)
+
+            setSuccessCard('Your Payment is done Successfully !')
+
+            const myItem = {
+                itemName: pid,
+                transId: paymentIntent.id,
+
+            }
+
+            fetch(`http://localhost:5000/order/${pid}`, {
+
+                method: "PATCH",
+                headers: {
+                    "content-type": "application/json",
+
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+
+                },
+                body: JSON.stringify( myItem),
+
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(paymentIntent)
+                    setLoading(false)
+
+                })
+        }
     }
 
     return (
@@ -90,7 +134,13 @@ const CheakoutForm = ({ order }) => {
                 </div>
             </form>
             {
-                errorCard && <p className='text-danger text-center font-bold'>Error: {errorCard}</p>
+                errorCard && <p className='text-danger text-center font-bold'>Error! {errorCard}</p>
+            }
+            {
+                successCard && <div className='text-success text-center font-bold'>
+                    <p>{successCard}</p>
+                    <p>Your Transaction ID: <span className='text-primary text-center font-bold'>{transId}</span></p>
+                </div>
             }
         </>
     );
