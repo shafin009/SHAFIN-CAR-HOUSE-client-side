@@ -17,9 +17,7 @@ In this Project I used---
 
 ⚫React-Router
 ⚫Firebase.
-⚫Json Web Token.
-⚫Tailwind & Bootstrap Framework & daisy ui.
-⚫MongoDB & Node.js for Server side DataBase.
+⚫Tailwind & Bootstrap Framework
 
 
 
